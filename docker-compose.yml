@@ -7,9 +7,10 @@ services:
     container_name: php
     restart: always
     ports:
-      - "8080:80"
+      - "8888:80"
     volumes:
       - ./database/php:/var/www/html
+      - ./database/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
       database:
         condition: service_healthy
