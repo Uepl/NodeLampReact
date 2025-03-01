@@ -1,5 +1,5 @@
 # NodeLampReact
-- Run apache, php, phpmyadmin, mysql, nodejs, React service.
+- Run apache, php, phpmyadmin, mysql, nodejs, Angular service.
 
 
 ## Prerequisite
