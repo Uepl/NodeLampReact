@@ -9,7 +9,7 @@
 ## Intial setup
 
 ```
-git clone https://github.com/Uepl/NodeLampReact.git
+git clone -b angular https://github.com/Uepl/NodeLampReact.git
 cd .\NodeLampReact\
 docker compose up --build
 ```
