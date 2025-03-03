@@ -1,0 +1,36 @@
+[Mon Mar 03 16:59:31.423678 2025] [proxy:debug] [pid 17:tid 17] proxy_util.c(2254): AH00925: initializing worker http://frontend:4200/ shared
+[Mon Mar 03 16:59:31.423940 2025] [proxy:debug] [pid 18:tid 18] proxy_util.c(2254): AH00925: initializing worker http://frontend:4200/ shared
+[Mon Mar 03 16:59:31.424039 2025] [proxy:debug] [pid 19:tid 19] proxy_util.c(2254): AH00925: initializing worker http://frontend:4200/ shared
+[Mon Mar 03 16:59:31.424167 2025] [mpm_prefork:notice] [pid 1:tid 1] AH00163: Apache/2.4.62 (Debian) PHP/8.4.4 configured -- resuming normal operations
+[Mon Mar 03 16:59:31.424327 2025] [proxy:debug] [pid 20:tid 20] proxy_util.c(2254): AH00925: initializing worker http://frontend:4200/ shared
+[Mon Mar 03 16:59:31.424398 2025] [proxy:debug] [pid 17:tid 17] proxy_util.c(2325): AH00927: initializing worker http://frontend:4200/ local
+[Mon Mar 03 16:59:31.424991 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Mon Mar 03 16:59:31.433955 2025] [proxy:debug] [pid 17:tid 17] proxy_util.c(2373): AH00931: initialized single connection worker in child 17 for (frontend:4200)
+[Mon Mar 03 16:59:31.434395 2025] [proxy:debug] [pid 18:tid 18] proxy_util.c(2325): AH00927: initializing worker http://frontend:4200/ local
+[Mon Mar 03 16:59:31.434391 2025] [proxy:debug] [pid 21:tid 21] proxy_util.c(2254): AH00925: initializing worker http://frontend:4200/ shared
+[Mon Mar 03 16:59:31.434645 2025] [proxy:debug] [pid 18:tid 18] proxy_util.c(2373): AH00931: initialized single connection worker in child 18 for (frontend:4200)
+[Mon Mar 03 16:59:31.435296 2025] [proxy:debug] [pid 19:tid 19] proxy_util.c(2325): AH00927: initializing worker http://frontend:4200/ local
+[Mon Mar 03 16:59:31.435496 2025] [proxy:debug] [pid 19:tid 19] proxy_util.c(2373): AH00931: initialized single connection worker in child 19 for (frontend:4200)
+[Mon Mar 03 16:59:31.435683 2025] [proxy:debug] [pid 20:tid 20] proxy_util.c(2325): AH00927: initializing worker http://frontend:4200/ local
+[Mon Mar 03 16:59:31.435937 2025] [proxy:debug] [pid 20:tid 20] proxy_util.c(2373): AH00931: initialized single connection worker in child 20 for (frontend:4200)
+[Mon Mar 03 16:59:31.436162 2025] [proxy:debug] [pid 21:tid 21] proxy_util.c(2325): AH00927: initializing worker http://frontend:4200/ local
+[Mon Mar 03 16:59:31.436371 2025] [proxy:debug] [pid 21:tid 21] proxy_util.c(2373): AH00931: initialized single connection worker in child 21 for (frontend:4200)
+[Mon Mar 03 17:04:40.731089 2025] [mpm_prefork:notice] [pid 1:tid 1] AH00170: caught SIGWINCH, shutting down gracefully
+[Mon Mar 03 17:05:08.830961 2025] [proxy:debug] [pid 17:tid 17] proxy_util.c(2254): AH00925: initializing worker http://frontend:4200/ shared
+[Mon Mar 03 17:05:08.831070 2025] [proxy:debug] [pid 18:tid 18] proxy_util.c(2254): AH00925: initializing worker http://frontend:4200/ shared
+[Mon Mar 03 17:05:08.831247 2025] [proxy:debug] [pid 19:tid 19] proxy_util.c(2254): AH00925: initializing worker http://frontend:4200/ shared
+[Mon Mar 03 17:05:08.831387 2025] [mpm_prefork:notice] [pid 1:tid 1] AH00163: Apache/2.4.62 (Debian) PHP/8.4.4 configured -- resuming normal operations
+[Mon Mar 03 17:05:08.831409 2025] [proxy:debug] [pid 20:tid 20] proxy_util.c(2254): AH00925: initializing worker http://frontend:4200/ shared
+[Mon Mar 03 17:05:08.831601 2025] [proxy:debug] [pid 21:tid 21] proxy_util.c(2254): AH00925: initializing worker http://frontend:4200/ shared
+[Mon Mar 03 17:05:08.831646 2025] [proxy:debug] [pid 17:tid 17] proxy_util.c(2325): AH00927: initializing worker http://frontend:4200/ local
+[Mon Mar 03 17:05:08.832510 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Mon Mar 03 17:05:08.833139 2025] [proxy:debug] [pid 17:tid 17] proxy_util.c(2373): AH00931: initialized single connection worker in child 17 for (frontend:4200)
+[Mon Mar 03 17:05:08.833613 2025] [proxy:debug] [pid 18:tid 18] proxy_util.c(2325): AH00927: initializing worker http://frontend:4200/ local
+[Mon Mar 03 17:05:08.833825 2025] [proxy:debug] [pid 18:tid 18] proxy_util.c(2373): AH00931: initialized single connection worker in child 18 for (frontend:4200)
+[Mon Mar 03 17:05:08.834610 2025] [proxy:debug] [pid 19:tid 19] proxy_util.c(2325): AH00927: initializing worker http://frontend:4200/ local
+[Mon Mar 03 17:05:08.834910 2025] [proxy:debug] [pid 19:tid 19] proxy_util.c(2373): AH00931: initialized single connection worker in child 19 for (frontend:4200)
+[Mon Mar 03 17:05:08.835172 2025] [proxy:debug] [pid 20:tid 20] proxy_util.c(2325): AH00927: initializing worker http://frontend:4200/ local
+[Mon Mar 03 17:05:08.835546 2025] [proxy:debug] [pid 20:tid 20] proxy_util.c(2373): AH00931: initialized single connection worker in child 20 for (frontend:4200)
+[Mon Mar 03 17:05:08.836073 2025] [proxy:debug] [pid 21:tid 21] proxy_util.c(2325): AH00927: initializing worker http://frontend:4200/ local
+[Mon Mar 03 17:05:08.836309 2025] [proxy:debug] [pid 21:tid 21] proxy_util.c(2373): AH00931: initialized single connection worker in child 21 for (frontend:4200)
+[Mon Mar 03 17:19:07.045031 2025] [mpm_prefork:notice] [pid 1:tid 1] AH00170: caught SIGWINCH, shutting down gracefully

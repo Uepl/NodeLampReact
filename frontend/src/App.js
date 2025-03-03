@@ -4,6 +4,7 @@ import Navbar2 from './components/Navbar2'
 import Section1 from './components/Section1'
 import StepList from './components/StepList';
 import Footer from './components/Footer';
+import { Download, Facebook, Pic1 ,Pic2} from './Photo/component';
 function App() {
   return (
     <>
@@ -25,7 +26,7 @@ function App() {
             ITE_3_2565
           </a>
           <img
-            src="frontend/src/Photo/download.png"
+            src={ Download }
             alt="Download PDF"
             className="doc-icon"
             onClick={() => window.open('/documents/ITE_3_2565.pdf', '_blank')}
@@ -37,7 +38,7 @@ function App() {
             CE01_3_2566
           </a>
           <img
-            src="frontend/src/Photo/download.png"
+            src={ Download}
             alt="Download PDF"
             className="doc-icon"
             onClick={() => window.open('/documents/CE01_3_2566.pdf', '_blank')}
