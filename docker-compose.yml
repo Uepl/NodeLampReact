@@ -10,6 +10,7 @@ services:
       - "8888:80"
     volumes:
       - ./database/php:/var/www/html
+      - ./database/apache/log:/var/log/apache2/
       - ./database/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
       database:
