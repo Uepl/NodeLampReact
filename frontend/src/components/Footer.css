@@ -1,0 +1,63 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    padding: 30px 35%;
+    background-color: #203864;
+    margin-top: 400px;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+  }
+  
+  .footer-left,
+  .footer-right {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .footer-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: white;
+  }
+  
+  .footer-item,
+  .footer-contact {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #F79B5B;
+    text-decoration: none;
+  }
+  
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    color: white;
+  }
+  
+  .footer-logo img {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .footer-item {
+    font-family: 'Noto Sans Thai', sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    margin-bottom: 5px;
+    padding-bottom: 8px; 
+    border-bottom: 1px solid #ccc;
+    width: 75%;
+  }
+  
+  .footer-item:last-child {
+    border-bottom: 1px solid #ccc;
+  }
+  

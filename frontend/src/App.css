@@ -58,6 +58,44 @@ body {
   margin-bottom: 20px;
 }
 
+.docs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 50px auto;
+  font-family: "Noto Sans Thai", sans-serif;
+  font-size: 24px;
+  color: #000000;
+  text-align: center;
+}
+
+.doc-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 750px;
+  background-color: #F79B5B; 
+  padding: 5px 15px;
+  border-radius: 8px;
+}
+
+.doc-link {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.doc-icon {
+  width: 24px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.doc-icon:hover {
+  transform: scale(1.1);
+}
+
 
 
 
