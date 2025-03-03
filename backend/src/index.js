@@ -8,8 +8,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const bodyParser = require("body-parser");
-const fs = require("fs"); // Import fs for file operations
-const path = require("path"); // Import path
+const fs = require("fs");
+const path = require("path");
 
 const app = express();
 const PORT = 3000;
@@ -17,14 +17,16 @@ const PORT = 3000;
 app.use(express.json());
 app.use(cors());
 
-const logFilePath = process.env.LOG_FILE_PATH || path.resolve("./log/access.log");
+const logFilePath = path.resolve("./log/access.log");
 const accessLogStream = createWriteStream(logFilePath, { flags: "a" });
 app.use(morgan("dev", { stream: accessLogStream }));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-readdirSync("./src/routes").map((c) => app.use("/api", require("./routes/" + c)));
+readdirSync("./src/routes").map((c) =>
+  app.use("/api", require("./routes/" + c))
+);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
@@ -38,17 +40,8 @@ app.listen(PORT, () => {
   logToFile("info", `loggin  path: combined.log and error.log`);
 });
 
-app.get("/news", (req, res) => {
-  res.send({ message: "this is news" });
-  logToFile("info", "i dont know what to do here, yet");
-});
-
-app.get("/about", (req, res) => {
-  res.send({ message: "this is about" });
-  logToFile("info", "this is about");
-});
-
-const JWT_SECRET = process.env.JWT_SECRET || crypto.randomBytes(64).toString("hex");
+const JWT_SECRET =
+  process.env.JWT_SECRET || crypto.randomBytes(64).toString("hex");
 const prisma = new PrismaClient();
 
 // Function to log to file
@@ -56,23 +49,28 @@ function logToFile(level, message) {
   const timestamp = new Date().toISOString();
   const logMessage = `[${timestamp}] [${level.toUpperCase()}] ${message}\n`;
 
-  const logDirectory = path.join(__dirname, "logs"); // Create 'logs' directory if it doesn't exist
-  if (!fs.existsSync(logDirectory)) {
-    fs.mkdirSync(logDirectory);
-  }
-
-  fs.appendFile(path.join(logDirectory, "combined.log"), logMessage, (err) => {
-    if (err) {
-      console.error("Error writing to log file:", err);
+  // Use logFilePath directly for combined.log
+  fs.appendFile(
+    path.join(path.dirname(logFilePath), "combined.log"),
+    logMessage,
+    (err) => {
+      if (err) {
+        console.error("Error writing to combined.log:", err);
+      }
     }
-  });
+  );
 
   if (level === "error") {
-    fs.appendFile(path.join(logDirectory, "error.log"), logMessage, (err) => {
-      if (err) {
-        console.error("Error writing to error log file:", err);
+    // Use logFilePath directly for error.log
+    fs.appendFile(
+      path.join(path.dirname(logFilePath), "error.log"),
+      logMessage,
+      (err) => {
+        if (err) {
+          console.error("Error writing to error.log:", err);
+        }
       }
-    });
+    );
   }
 }
 
@@ -101,18 +99,21 @@ app.post("/api/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    const token = jwt.sign(
-      { userId: user.id, email: user.email },
-      JWT_SECRET,
-      { expiresIn: "1h" }
-    );
+    const token = jwt.sign({ userId: user.id, email: user.email }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
 
     logToFile("info", `[LOGIN] Success: email=${email}, userId=${user.id}`);
 
-    res.json({ token, message: "Login successful" });
+    res.status(201).json({ token, message: "Login successful" });
   } catch (error) {
-    logToFile("error", `[LOGIN] Error: email=${req.body.email || "unknown"}, error=${error.message}, stack=${error.stack}`);
     res.status(500).json({ message: "Internal server error" });
+    logToFile(
+      "error",
+      `[LOGIN] Error: email=${req.body.email || "unknown"}, error=${
+        error.message
+      }, stack=${error.stack}`
+    );
   }
 });
 
@@ -130,7 +131,10 @@ app.post("/api/register", async (req, res) => {
     });
 
     if (existingUser) {
-      logToFile("warn", `[REGISTER] Failed: Email already exists, email=${email}`);
+      logToFile(
+        "warn",
+        `[REGISTER] Failed: Email already exists, email=${email}`
+      );
       return res.status(400).json({ message: "Email already exists" });
     }
 
@@ -144,11 +148,50 @@ app.post("/api/register", async (req, res) => {
       },
     });
 
-    logToFile("info", `[REGISTER] Success: email=${email}, userId=${newUser.id}`);
+    logToFile(
+      "info",
+      `[REGISTER] Success: email=${email}, userId=${newUser.id}`
+    );
 
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
-    logToFile("error", `[REGISTER] Error: email=${req.body.email || "unknown"}, error=${error.message}, stack=${error.stack}`);
+    logToFile(
+      "error",
+      `[REGISTER] Error: email=${req.body.email || "unknown"}, error=${
+        error.message
+      }, stack=${error.stack}`
+    );
     res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.post("/api/download/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const parseId = parseInt(id)
+    if(isNaN(parseId)) {
+      return res.status(400).json({ error: "Invalid ID parameter" });
+    }
+
+    const updatedDownload = await prisma.downloaded.update({
+      where: {
+        id: parseId,
+      },
+      data: {
+        count: {
+          increment: 1,
+        },
+      },
+    });
+
+    if (updatedDownload) {
+      res.status(200).json(updatedDownload);
+    } else {
+      res.status(404).json({ error: "Download record not found" });
+    }
+  } catch (error) {
+    console.error("Error incrementing download count:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });

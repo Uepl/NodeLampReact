@@ -75,8 +75,8 @@ services:
       - "8081:80"
     environment:
       PMA_HOST: database
-      PMA_USER: test
-      PMA_PASSWORD: test
+      PMA_USER: root
+      PMA_PASSWORD: rootpassword
     depends_on:
       database:
         condition: service_healthy

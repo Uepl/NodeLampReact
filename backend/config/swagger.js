@@ -15,6 +15,16 @@ const swaggerOption = {
         description: "API Server"
       },
     ],
+    tags: [
+      {
+        name: 'Users',
+        description: 'Operations related to users',
+      },
+      {
+        name: 'Download', 
+        description: 'Operations related to downloads',
+      },
+    ],
   },
   apis: ["./src/routes/*.js"],
 };
