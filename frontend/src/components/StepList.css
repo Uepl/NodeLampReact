@@ -1,0 +1,61 @@
+.step-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 90%; /* ปรับให้ไม่กว้างเกินจอ */
+    max-width: 1230px; /* จำกัดความกว้างสูงสุด */
+    margin: 250px auto 0; /* เว้นระยะจากด้านบน */
+    padding-left: 5%; /* ใช้ % แทน px เพื่อให้รองรับการย่อจอ */
+  }
+
+  .step-item {
+    display: flex;
+    align-items: center; /* จัดให้อยู่แถวเดียวกัน */
+    gap: 10px; /*  ระยะห่างระหว่างข้อความกับรูป */
+    font-family: "Noto Sans Thai", sans-serif;
+    font-size: 28px;
+    color: #000000;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .step-item:last-child {
+    border-bottom: none;
+  }
+  
+  @media (max-width: 768px) {
+    .step-list-container {
+      align-items: center; /* จัดตรงกลางเมื่อจอเล็ก */
+      padding-left: 0;
+      text-align: center;
+    }
+  }
+
+  .pdf-link {
+    color: #000000;
+    font-size: 28px;
+    text-decoration: none;
+  }
+  
+  .clickable-image {
+    width: 19px; /* ปรับขนาดรูป */
+    height: auto;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.2s ease;
+  }
+  
+  .clickable-image:hover {
+    transform: scale(1.05);
+  }
+  .image-container1 {
+    margin-left: 27px;
+  }
+  .image-container2 {
+    display: flex;
+    justify-content: center;
+    margin-left: 50px;
+    height: 15vh;  
+  }
+  
