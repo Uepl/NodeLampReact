@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {
   read,
-  listUser,
+  download,
   createUser,
   lockin,
 } = require("../../controller/profile");
@@ -147,7 +147,7 @@ router.post("/api/login", lockin);
  *                   example: "Internal server error"
  */
 
-router.post("/api/download/:id");
+router.post("/api/download/:id", download);
 /**
  * @swagger
  * /api/download/{id}:

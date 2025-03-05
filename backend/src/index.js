@@ -81,56 +81,66 @@ app.post("/api/login", async (req, res) => {
 
     logToFile("info", `[LOGIN] Attempt: email=${email}`);
 
-    const user = await prisma.user.findUnique({
-      where: {
-        email: email,
-      },
-    });
 
+    let user = await prisma.students.findUnique({
+      where: { email: email },
+    });
+    let userType = "student";
+
+    if (!user) {
+      user = await prisma.teachers.findUnique({
+        where: { email: email },
+      });
+      userType = "teacher";
+    }
+
+    if (!user) {
+      user = await prisma.visitors.findUnique({
+        where: { email: email },
+      });
+      userType = "visitor";
+    }
     if (!user) {
       logToFile("warn", `[LOGIN] Failed: User not found, email=${email}`);
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
-
+    const passwordMatch = await bcrypt.compare(password, user.passwords);
     if (!passwordMatch) {
       logToFile("warn", `[LOGIN] Failed: Password mismatch, email=${email}`);
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    const token = jwt.sign({ userId: user.id, email: user.email }, JWT_SECRET, {
+    const token = jwt.sign({ userId: user.email, email: user.email, userType: userType }, JWT_SECRET, {
       expiresIn: "1h",
     });
 
-    logToFile("info", `[LOGIN] Success: email=${email}, userId=${user.id}`);
+    logToFile("info", `[LOGIN] Success: email=${email}, userType=${userType}`);
 
     res.status(201).json({ token, message: "Login successful" });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
-    logToFile(
-      "error",
-      `[LOGIN] Error: email=${req.body.email || "unknown"}, error=${
-        error.message
-      }, stack=${error.stack}`
-    );
+    logToFile("error", `[LOGIN] Error: email=${req.body.email || "unknown"}, error=${error.message}, stack=${error.stack}`);
   }
 });
 
 // Registration API
 app.post("/api/register", async (req, res) => {
   try {
-    const { email, password, name } = req.body;
+    const { email, password } = req.body;
 
-    logToFile("info", `[REGISTER] Attempt: email=${email}, name=${name}`);
+    logToFile("info", `[REGISTER] Attempt: email=${email}`);
 
-    const existingUser = await prisma.user.findUnique({
-      where: {
-        email: email,
-      },
+    const existingStudent = await prisma.students.findUnique({
+      where: { email: email },
     });
-
-    if (existingUser) {
+    const existingTeacher = await prisma.teachers.findUnique({
+      where: { email: email },
+    });
+    const existingVisitor = await prisma.visitors.findUnique({
+      where: { email: email },
+    });
+    if (existingStudent || existingTeacher || existingVisitor) {
       logToFile(
         "warn",
         `[REGISTER] Failed: Email already exists, email=${email}`
@@ -138,13 +148,12 @@ app.post("/api/register", async (req, res) => {
       return res.status(400).json({ message: "Email already exists" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 12);
 
-    const newUser = await prisma.user.create({
+    const newUser = await prisma.visitors.create({
       data: {
         email: email,
         password: hashedPassword,
-        name: name,
       },
     });
 

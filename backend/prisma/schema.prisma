@@ -1,12 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider      = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-3.0.x"]
+  // binaryTargets = ["native", "debian-openssl-3.0.x"]
 }
 
 datasource db {
@@ -14,16 +8,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id       Int      @id @default(autoincrement())
-  email    String   @unique
-  password String
-  name     String?
-  createAt DateTime @default(now())
-  updateAt DateTime @updatedAt
+model Downloaded {
+  id    Int @id @default(autoincrement())
+  count Int @default(0)
+
 }
 
-model Downloaded {
-  id Int @id @default(autoincrement())
-  count Int @default(0)
+model Students {
+  email                       String   @id @db.VarChar(255)
+  years                       Int
+  student_id                  String   @db.VarChar(10)
+  title                       String   @db.VarChar(10)
+  full_name                   String   @db.VarChar(100)
+  nickname                    String   @db.VarChar(50)
+  birthdate                   DateTime @db.Date
+  gender                      String   @db.VarChar(10)
+  phone                       String   @db.VarChar(15)
+  passwords                   String   @db.VarChar(255)
+  years_students_yearsToyears Years    @relation("students_yearsToyears", fields: [years], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "students_ibfk_1")
+
+  @@index([years], map: "years")
+}
+
+model Teachers {
+  email     String   @id @db.VarChar(255)
+  title     String   @db.VarChar(50)
+  full_name String   @db.VarChar(100)
+  nickname  String   @db.VarChar(50)
+  birthdate DateTime @db.Date
+  gender    String   @db.VarChar(10)
+  phone     String   @db.VarChar(15)
+  passwords String   @db.VarChar(255)
+}
+
+model Years {
+  id                             Int        @id
+  year_name                      String     @db.VarChar(10)
+  students_students_yearsToyears Students[] @relation("students_yearsToyears")
+}
+
+model visitors {
+ email     String   @id @db.VarChar(255) @unique
+ password  String   @db.VarChar(255)
 }
