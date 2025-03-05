@@ -57,7 +57,8 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./backend:/app
+      - ./backend/src:/app/src
+      - ./backend/config:/app/config
     environment:
       DATABASE_URL: mysql://test:test@database:3306/mydb
     depends_on:
