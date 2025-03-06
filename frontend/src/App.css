@@ -1,0 +1,106 @@
+*{
+  box-sizing: border-box;
+  font-family: "Noto Sans Thai", serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.rectangle {
+  position: absolute;
+  width: 70%;
+  max-width: 982px;
+  height: 94px;
+  left: 50%;
+  top: 650px;
+  transform: translateX(-50%);
+  background: #d46518;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: "Noto Sans Thai", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.center-container001 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.rectangle1 {
+  width: 70%;
+  max-width: 982px;
+  height: 94px;
+  background: #d46518;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: "Noto Sans Thai", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+
+  margin-bottom: 20px;
+}
+
+.docs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 50px auto;
+  font-family: "Noto Sans Thai", sans-serif;
+  font-size: 24px;
+  color: #000000;
+  text-align: center;
+}
+
+.doc-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 750px;
+  background-color: #F79B5B; 
+  padding: 5px 15px;
+  border-radius: 8px;
+}
+
+.doc-link {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.doc-icon {
+  width: 24px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.doc-icon:hover {
+  transform: scale(1.1);
+}
+
+@font-face {
+  font-family: 'Noto Sans Thai';
+  src: url('./Font/NotoSansThai-VariableFont_wdth\,wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
